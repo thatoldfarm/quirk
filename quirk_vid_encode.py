@@ -121,9 +121,9 @@ data = b''.join(data_chunks)
 try:
     # Decompress the full data
     decompressed_data = gzip.decompress(data)
-    with open("test_validation.txt", "wb") as out_file:
+    with open("test_vid_validation.txt", "wb") as out_file:
         out_file.write(decompressed_data)
-    print("Data decompressed and written to 'test_validation.txt'.")
+    print("Data decompressed and written to 'test_vid_validation.txt'.")
 except Exception as e:
     print(f"Exception occurred during decompression: {e}")
 

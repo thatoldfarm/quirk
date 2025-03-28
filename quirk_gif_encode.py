@@ -7,13 +7,17 @@ directory = 'qrs'
 # Create a list to store the image frames
 images = []
 
-# Keep track of the previous image size
-prev_size = None
+# Consistent image size
+target_size = (300, 300)
 
-# Create a blank image with a white background
-blank_img = Image.new('RGB', (300, 300), (255, 255, 255))
+# Create a blank image with a white background of the target size
+blank_img = Image.new('RGB', target_size, (255, 255, 255))
+
+#Add an empty white image at the start, and then periodically
+images.append(blank_img)
 
 # Iterate over the PNG files in the directory
+frame_count = 0
 for filename in sorted(os.listdir(directory)):
     if filename.endswith('.png'):
         # Open the image
@@ -22,19 +26,19 @@ for filename in sorted(os.listdir(directory)):
         # Convert the image to RGB mode
         img = img.convert('RGB')
 
-        # Resize the image to a consistent size (e.g., 300x300)
-        img = img.resize((300, 300))
-
-        # Check if the current image is smaller than the previous one
-        if prev_size is not None and img.size < prev_size:
-            # Add the blank image
-            images.append(blank_img)
+        # Resize the image to a consistent size
+        img = img.resize(target_size)
 
         # Add the current image to the list
         images.append(img)
+        frame_count+=1
 
-        # Update the previous image size
-        prev_size = img.size
+        # Add blank frame every 10 frames to allow for the decoder to keep pace
+        if frame_count % 10 == 0:
+          images.append(blank_img)
+
+# Add an empty white image to the end, and then periodically
+images.append(blank_img)
 
 # Save the animated GIF
 try:

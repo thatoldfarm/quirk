@@ -14,7 +14,10 @@ def safe_base64_decode(data):
     try:
         data = data.decode("utf-8")  # Decode the bytes to a string
     except UnicodeDecodeError:
-        return data  # If data is not valid UTF-8, it's probably already decoded
+      #  return data  # If data is not valid UTF-8, it's probably already decoded
+
+      raise ValueError(f"UnicodeDecodeError: {data!r}")
+
     missing_padding = 4 - len(data) % 4
     if missing_padding:
         data += '=' * missing_padding
@@ -22,8 +25,11 @@ def safe_base64_decode(data):
         return base64.urlsafe_b64decode(data)
     except Exception as e:
         print(f"Exception during decoding: {e}")
-        print(f"Data: {data}")
-        return None
+        #return None
+        raise ValueError(f"Base64DecodeError: {e}") #Change it to an unhandled error
+    #If your data is still failing to base64 decode, you can also print data
+    #print(data)
+
 
 # Open the animated GIF file
 gif_file = 'animated.gif'
@@ -47,10 +53,14 @@ try:
 
         # Process the decoded data
         for obj in decoded_objects:
-            decoded_data = safe_base64_decode(obj.data)
-            if decoded_data is not None and decoded_data != prev_chunk:
-                data_chunks.append(decoded_data)
-                prev_chunk = decoded_data
+            try:
+                decoded_data = safe_base64_decode(obj.data)
+                if decoded_data is not None and decoded_data != prev_chunk:
+                    data_chunks.append(decoded_data)
+                    prev_chunk = decoded_data
+                    print(f"Successfully decoded frame {current_frame}: {len(decoded_data)} bytes") #Log a successful chunk!
+            except ValueError as e:
+                print(f"Error decoding frame {current_frame}: {e}")
 
         # Move to the next frame
         gif.seek(current_frame + 1)
@@ -62,9 +72,9 @@ concatenated_data = b''.join(data_chunks)
 try:
     # Decompress the full data
     decompressed_data = gzip.decompress(concatenated_data)
-    with open("decoded_test.txt", "wb") as out_file:
+    with open("test_gif_decoded.txt", "wb") as out_file:
         out_file.write(decompressed_data)
-    print("Data decompressed and written to 'decoded_test.txt'.")
+    print("Data decompressed and written to 'test_gif_decoded.txt'.")
 except Exception as e:
     print(f"Exception occurred during decompression: {e}")
 
