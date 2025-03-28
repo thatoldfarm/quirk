@@ -3,6 +3,18 @@ Encoder and decoder for files encoded as QR codes in animated '.gif' and '.mp4' 
 
 This project consists of a set of Python scripts designed to encode textual data into QR codes, compile these codes into visual formats (video and GIF), and then decode them back to the original text. It showcases a method for data encoding, transmission, and decoding using QR codes.
 
+In a nutshell the encoders take any kind of file type as an input.
+
+It turns the file *itself* into text and then encodes that text *into* the QR codes.
+
+The QR codes are then used to generate an animated gif file and/or a mp4 file.
+
+The gif and/or mp4 file can then be decoded back into the 'original' *file* itself including the file extension.
+
+Both the animated gifs and the mp4 video files can then be broadcast and decoded.
+
+This enables it to be able to read from one device to another *with only the camera* and be able to recreate the *file* itself on the receiving device once the frames are decoded.
+
 Main quirk Repository:
 
 https://github.com/thatoldfarm/quirk
