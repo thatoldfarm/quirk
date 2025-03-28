@@ -1,7 +1,7 @@
 # quirk
 Encoder and decoder for files encoded as QR codes in animated '.gif' and '.mp4' formats.
 
-
+This project consists of a set of Python scripts designed to encode textual data into QR codes, compile these codes into visual formats (video and GIF), and then decode them back to the original text. It showcases a method for data encoding, transmission, and decoding using QR codes.
 
 #### Dependencies:
 - Python 3
@@ -14,8 +14,12 @@ Encoder and decoder for files encoded as QR codes in animated '.gif' and '.mp4' 
 - json
 - pyzbar
 
+
 #### EXTRA Dependencies for troubleshooting:
+- libgtk2.0-dev
+- pkg-config
 - opencv-contrib-python
+
 
 #### Order of execution:
 
@@ -24,6 +28,12 @@ quirk_vid_decode.py
 
 quirk_gif_encode.py
 quirk_gif_decode.py
+
+
+
+
+
+#### License
 
 MIT License
 Copyright (c) 2025
