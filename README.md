@@ -5,9 +5,9 @@ This project consists of a set of Python scripts designed to encode textual data
 
 In a nutshell the encoders take any kind of file type as an input.
 
-It turns the file *itself* into text and then encodes that text *into* the QR codes.
+It turns the file *itself* into text (in chunks.json) and then encodes that text *into* the QR code images.
 
-The QR codes are then used to generate an animated gif file and/or a mp4 file.
+The QR code images are then used to generate an animated gif file and/or a mp4 file.
 
 The gif and/or mp4 file can then be decoded back into the 'original' *file* itself including the file extension.
 
