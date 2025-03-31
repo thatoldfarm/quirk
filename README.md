@@ -31,6 +31,18 @@ Alpha release with source code:
 
 https://github.com/thatoldfarm/quirk/releases/tag/0.001
 
+#### Order of execution:
+
+quirk_vid_encode.py
+quirk_vid_decode.py
+
+quirk_gif_encode.py
+quirk_gif_decode.py
+
+Optional:
+quirk_json_decoder.py
+
+
 #### Dependencies:
 - Python 3
 - OpenCV (`cv2`)
@@ -47,18 +59,6 @@ https://github.com/thatoldfarm/quirk/releases/tag/0.001
 - libgtk2.0-dev
 - pkg-config
 - opencv-contrib-python
-
-
-#### Order of execution:
-
-quirk_vid_encode.py
-quirk_vid_decode.py
-
-quirk_gif_encode.py
-quirk_gif_decode.py
-
-
-
 
 
 #### License
